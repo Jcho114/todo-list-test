@@ -9,11 +9,21 @@
     integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
     crossorigin="anonymous"
   ></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/json-enc.js"></script>
   <link rel="stylesheet" href="/css/output.css">
 </head>
 <body>
   <main class="flex flex-col justify-center items-center min-h-[100vh]">
     <h1 class="text-3xl font-bold">Task List</h1>
+
+    <div hx-trigger="load" hx-target="this" hx-get="/tasks"></div>
+
+    <form hx-post="/tasks/create" hx-ext="json-enc">
+      <h1 class="text-2xl">Create Task</h1>
+      <label>
+        Task Name: <input name="name" type="text" placeholder="Task Name" />
+      </label>
+    </form>
   </main>
 </body>
 </html>
