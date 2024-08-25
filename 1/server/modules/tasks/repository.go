@@ -3,6 +3,7 @@ package tasks
 import (
 	"database/sql"
 	"fmt"
+	"log"
 
 	common "github.com/Jcho114/todo-list-test/1/server/common"
 
@@ -18,16 +19,16 @@ func NewTaskRepository(db *sql.DB) (*TaskRepository, error) {
 }
 
 func (repository *TaskRepository) InitDatabase() error {
-	fmt.Print("Initializing task database...\n")
+	log.Print("Initializing task database...\n")
 
-	fmt.Print("Creating tasks table if it does not exist\n")
+	log.Print("Creating tasks table if it does not exist\n")
 	_, err := repository.Exec("CREATE TABLE IF NOT EXISTS TASKS ( id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(255) NOT NULL )")
 
 	if err != nil {
 		return err
 	}
 
-	fmt.Printf("Initialized task database!\n")
+	log.Printf("Initialized task database!\n")
 
 	return nil
 }

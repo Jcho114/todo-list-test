@@ -3,6 +3,7 @@ package tasks
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -15,7 +16,7 @@ func NewTaskController(service *TaskService) (*TaskController, error) {
 }
 
 func (controller *TaskController) FindAll(w http.ResponseWriter, r *http.Request) {
-	fmt.Print("Inside the FindAll API\n")
+	log.Print("Inside the FindAll API\n")
 	tasks, err := controller.service.FindAll()
 
 	if err != nil {
@@ -32,7 +33,7 @@ type TaskCreateRequest struct {
 }
 
 func (controller *TaskController) CreateTask(w http.ResponseWriter, r *http.Request) {
-	fmt.Print("Inside the CreateTask API\n")
+	log.Print("Inside the CreateTask API\n")
 	var request TaskCreateRequest
 	err := json.NewDecoder(r.Body).Decode(&request)
 
